@@ -1,12 +1,12 @@
 public class Plant {
-    static int s_iMaxPlantNRJPoints;
+    private static int s_iMaxPlantNRJPoints;
 
-    float m_fGrowingSpeed;
-    float m_fArea;
-    int m_iLiceSpan;
-    int m_iAge;
-    int m_iMaxNbrNRJ;
-    int m_iCurrentNRJ;
+    private float m_fGrowingSpeed;
+    private float m_fArea;
+    private int m_iLiceSpan;
+    private int m_iAge;
+    private int m_iMaxNbrNRJ;
+    private int m_iCurrentNRJ;
 
     public static int getS_iMaxPlantNRJPoints() {
         return s_iMaxPlantNRJPoints;
@@ -63,9 +63,23 @@ public class Plant {
     public void setM_iCurrentNRJ(int m_iCurrentNRJ) {
         this.m_iCurrentNRJ = m_iCurrentNRJ;
     }
+    Coords m_Coords;
 
+    void draw(){
+
+    }
+    void step(){
+
+    }
+    void pop(){
+
+    }
     void grow(){
 
     }
+    void die(){
+
+    }
+
 
 }

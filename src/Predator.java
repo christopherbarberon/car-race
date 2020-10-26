@@ -1,7 +1,7 @@
 public class Predator {
-    static int s_iMaxPredatorAge;
-    int m_iAgeMax;
-    int m_iAge;
+    private static int s_iMaxPredatorAge;
+    private int m_iAgeMax;
+    private int m_iAge;
 
     static int s_iMaxPredatorLifePoint;
     int m_iLifePointMax;
@@ -26,4 +26,39 @@ public class Predator {
 
     Vision m_Vision;
     Smelling m_Smelling;
+    Coords m_Coords;
+
+    void draw(){
+
+    }
+    void step(){
+
+    }
+    void pop(){
+
+    }
+    void move(){
+
+    }
+    void mating(){
+
+    }
+    void eat(){
+
+    }
+    void drink(){
+
+    }
+    void rest(){
+
+    }
+
+    void spot(Prey p_Prey){
+        if(m_Smelling.canSmell(p_Prey, m_Coords)){
+            hunt(p_Prey);
+        }
+    }
+    void hunt(Prey p_Prey){
+
+    }
 }

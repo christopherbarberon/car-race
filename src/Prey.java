@@ -1,7 +1,7 @@
 public class Prey {
-    static int s_iMaxPreyAge;
-    int m_iAgeMax;
-    int m_iAge;
+   private static int s_iMaxPreyAge;
+   private int m_iAgeMax;
+   private int m_iAge;
 
     static int s_iMaxPreyLifePoint;
     int m_iLifePointMax;
@@ -21,4 +21,34 @@ public class Prey {
 
     Vision m_Vision;
     Hearing m_Hearing;
+    Coords m_Coords;
+
+    void draw(){
+
+    }
+    void step(){
+
+    }
+    void pop(){
+
+    }
+    void move(){
+
+    }
+    void mating(){
+
+    }
+    void eat(){
+
+    }
+    void drink(){
+
+    }
+    void rest(){
+
+    }
+    void flee(){
+
+    }
+
 }
