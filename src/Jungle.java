@@ -17,7 +17,7 @@ public class Jungle {
             e.printStackTrace();
         }
 
-        /*while (terrain.hasLivingCreatures()){    //mettre le code dedans apres 
+        /*while (terrain.hasLivingCreatures()){    //mettre le code dedans apres
 
         }
         */
