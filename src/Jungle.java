@@ -2,14 +2,16 @@
 import java.util.Random;
 public class Jungle {
     public static Random s_Random = new Random();
+    public static Terrain s_terrain = new Terrain();
+
+
     public static void main(String[] args) {
-        Terrain terrain = new Terrain();
-        Weather weather = new Weather(terrain);
+        Weather weather = new Weather(s_terrain);
 
 
         weather.step();
-        terrain.step();
-        terrain.draw();
+        s_terrain.step();
+        s_terrain.draw();
 
         try {
             Thread.sleep(250);
@@ -21,5 +23,8 @@ public class Jungle {
 
         }
         */
+    }
+    public static Terrain getTerrain(){
+        return s_terrain;
     }
 }

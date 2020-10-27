@@ -1,10 +1,19 @@
 public class Terrain {
     int m_iWidth;
     int m_iHeight;
-    Prey[] m_PreysArray;
-    Predator[] m_PredatorArray;
-    Plant[] m_PlantArray;
-    WaterSpot m_WaterSpot;
+
+    public int getWidth(){
+        return m_iWidth;
+    }
+    public int getHeight(){
+        return m_iHeight;
+    }
+
+
+    private Prey[] m_PreysArray;
+    private Predator[] m_PredatorArray;
+    private Plant[] m_PlantArray;
+    private WaterSpot m_WaterSpot;
     private static char[][] board;
 
     public Terrain(){
@@ -27,7 +36,7 @@ public class Terrain {
      m_iHeight = 30;
      m_iWidth = 80;
 }
-void step(){
+    void step(){
     for (Predator pred : m_PredatorArray) {
         pred.step();
     }
@@ -40,7 +49,7 @@ void step(){
     m_WaterSpot.step();
 
 }
-void draw(){
+    void draw(){
     for (int x = 0; x <m_iHeight; x++) {
 
         for (int y = 0; y <  m_iWidth; y++) {
@@ -55,11 +64,24 @@ void draw(){
     }
 
 }
-boolean hasLivingCreatures(){
+
+    boolean hasLivingCreatures(){
     return true;
 }
-public void spray(float p_fQuantity){
+    public void spray(float p_fQuantity){
     m_WaterSpot.addWater(p_fQuantity);
 }
+    public boolean isSpotOccupied(Coords p_Coords ){
+        if (m_WaterSpot.isInWater(p_Coords))
+            return true;
 
+        for (Predator pred:m_PredatorArray) {
+            if (pred.m_Coords.isSame(p_Coords))
+                return true;
+        }
+
+
+        //test also water,preys,plant ...
+        return false;
+    }
 }
