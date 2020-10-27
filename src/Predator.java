@@ -53,7 +53,7 @@ public class Predator {
 
     }
     void step(){
-
+        
     }
     void pop(boolean p_Born){
         if(!p_Born) {
