@@ -1,6 +1,6 @@
 public class Terrain {
-    int m_iWidth;
-    int m_iHeight;
+    int m_iWidth=80;
+    int m_iHeight=30;
 
     public int getWidth(){
         return m_iWidth;

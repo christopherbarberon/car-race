@@ -1,54 +1,53 @@
-public class Prey {
-   private static int s_iMaxPreyAge;
-   private int m_iAgeMax;
-   private int m_iAge;
+public class Prey extends Animal {
+ public static final int BORN_VIGOR = 30;
+ public static final int BORN_LIFE_POINT = 30;
 
-    static int s_iMaxPreyLifePoint;
-    int m_iLifePointMax;
-    int m_iLifePoint;
+ static int s_iMaxPreyAge;
+ static int s_iMaxPreyLifePoint;
+ static int s_iMaxPreyVigor;
+ static float s_fMaxPreyMovingSpeed;
+ static float s_fPreyAcceleration;
 
-    static int s_iMaxPreyVigor;
-    int m_iVigorMax;
-    int m_iVigor;
+ Hearing m_Hearing;
 
-    static float s_fMaxPreyMovingSpeed;
-    float m_fMaxMovingSpeed;
-    float m_fMovingSpeed;
+ public Prey() {
+  super(s_iMaxPreyAge, s_iMaxPreyLifePoint, s_iMaxPreyVigor, s_fMaxPreyMovingSpeed);
+  m_Hearing = new Hearing(this);
 
-    static float s_fPreyAcceleration;
+  m_fOrientation = (float) (Jungle.s_Random.nextFloat() * Math.PI * 2.0f);
+  pop();
+ }
 
-    float m_fOrientation; // angle varing between 0 and 2Pi
+ void draw() {
 
-    Vision m_Vision;
-    Hearing m_Hearing;
-    Coords m_Coords;
+ }
 
-    void draw(){
+ void step() {
 
-    }
-    void step(){
+ }
 
-    }
-    void pop(){
+ void move() {
+ }
 
-    }
-    void move(){
+ void mating() {
 
-    }
-    void mating(){
+ }
 
-    }
-    void eat(){
+ void eat() {
 
-    }
-    void drink(){
+ }
 
-    }
-    void rest(){
+ void drink() {
 
-    }
-    void flee(){
+ }
 
-    }
+ void rest() {
+
+ }
+
+ void flee() {
+
+ }
+
 
 }
