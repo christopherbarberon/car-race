@@ -21,7 +21,7 @@ public class Prey extends Animal {
 
  @Override
  public void draw(String[][] p_Board) {
-  p_Board[m_Coords.getX() ][m_Coords.getY()] = "\uD83D\uDC03";
+  p_Board[m_Coords.getX() ][m_Coords.getY()] = "Pg";
   p_Board[m_Coords.getX()+1 ][m_Coords.getY()] = "";
  }
 

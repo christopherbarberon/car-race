@@ -70,7 +70,7 @@ public class Plant extends Resource{
 
     @Override
     public void draw(String[][] p_Board) {
-        p_Board[m_Coords.getX() ][m_Coords.getY()] = "\uD83C\uDF3F";
+        p_Board[m_Coords.getX() ][m_Coords.getY()] = "Pl";
         p_Board[m_Coords.getX()+1 ][m_Coords.getY()] = "";
     }
 
