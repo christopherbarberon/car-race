@@ -1,87 +1,126 @@
-public class Terrain {
-    int m_iWidth=80;
-    int m_iHeight=30;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
-    public int getWidth(){
+public class Terrain extends Drawable {
+    private int m_iWidth;
+    private int m_iHeight;
+
+    private String[][] m_Board;
+    public int getWidth() {
         return m_iWidth;
     }
-    public int getHeight(){
+    public int getHeight() {
         return m_iHeight;
     }
 
+    Drawable[] m_Drawable = new Drawable[300];
+    PrintStream outStream;
 
-    private Prey[] m_PreysArray;
-    private Predator[] m_PredatorArray;
-    private Plant[] m_PlantArray;
-    private WaterSpot m_WaterSpot;
-    private static char[][] board;
-
-    public Terrain(){
-     m_PreysArray=new Prey[100];
-        for (int i = 0; i < m_PreysArray.length; i++) {
-            m_PreysArray[i] = new Prey();
+    public Terrain() {
+        try {
+            outStream = new PrintStream(System.out, true, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
 
-     m_PredatorArray=new Predator[100];
-        for (int i = 0; i < m_PredatorArray.length; i++) {
-            m_PredatorArray[i] = new Predator();
+        m_iWidth = 120;
+        m_iHeight = 20;
+        m_Board = new String[m_iWidth][];
+        for (int i = 0; i < m_iWidth; i++) {
+            m_Board[i] = new String[m_iHeight];
+        }
+        initBoard();
+        m_Drawable[0] = new WaterSpot(this);
+    }
+
+    public WaterSpot getWaterSpot(){
+        return (WaterSpot) m_Drawable[0];
+    }
+
+    public void init() {
+        for (int i = 1; i < 25; i++) {
+            m_Drawable[i] = new Predator(null);
+        }
+        for (int i = 50; i < 75; i++) {
+            m_Drawable[i] = new Prey(null);
         }
 
-     m_PlantArray=new Plant[50];
-        for (int i = 0; i < m_PlantArray.length; i++) {
-            m_PlantArray[i] = new Plant();
+        for (int i = 100; i < 125; i++) {
+            m_Drawable[i] = new Plant();
+        }
+    }
+
+    private void initBoard() {
+        for (int i = 0; i < m_iWidth; i++) {
+            for (int k = 0; k < m_iHeight; k++) {
+                if ((i == 0 || i == m_iWidth - 1) && k != 0)
+                    m_Board[i][k] = "|";
+                else if (k == 0 || k == m_iHeight - 1)
+                    m_Board[i][k] = "_";
+                else
+                    m_Board[i][k] = " ";
+            }
+        }
+    }
+
+    public void step() {
+        for (Drawable drawable : m_Drawable) {
+            if (drawable != null)
+                drawable.step();
+        }
+    }
+
+    public void draw() {
+        for (Drawable drawable : m_Drawable) {
+            if (drawable != null)
+                drawable.draw(m_Board);
         }
 
-     m_WaterSpot =new WaterSpot();
-     m_iHeight = 30;
-     m_iWidth = 80;
-}
-    void step(){
-    for (Predator pred : m_PredatorArray) {
-        pred.step();
-    }
-    for (Plant plant : m_PlantArray) {
-        plant.step();
-    }
-    for (Prey prey : m_PreysArray) {
-        prey.step();
-    }
-    m_WaterSpot.step();
-
-}
-    void draw(){
-    for (int x = 0; x <m_iHeight; x++) {
-
-        for (int y = 0; y <  m_iWidth; y++) {
-            if (x == 0 || x == m_iHeight - 1)
-                System.out.print("_");
-            else if (y == 0 || y == m_iWidth - 1)
-                System.out.print("|");
-            else
-                System.out.print(" ");
+        for (int k = 0; k < m_iHeight; k++) {
+            for (int i = 0; i < m_iWidth; i++) {
+                outStream.print(m_Board[i][k]);
+            }
+            outStream.println("");
         }
-        System.out.println("");
     }
 
-}
+    static boolean hasLivingCreatures() {
+        return true;
+    }
 
-    boolean hasLivingCreatures(){
-    return true;
-}
-    public void spray(float p_fQuantity){
-    m_WaterSpot.addWater(p_fQuantity);
-}
-    public boolean isSpotOccupied(Coords p_Coords ){
-        if (m_WaterSpot.isInWater(p_Coords))
+    public void spray(float p_fQuantity) {
+        getWaterSpot().addWater(p_fQuantity);
+
+    }
+
+    public boolean isSpotOccupied(Coords p_Coords) {
+        if (getWaterSpot().isInWater(p_Coords))
             return true;
 
-        for (Predator pred:m_PredatorArray) {
-            if (pred.m_Coords.isSame(p_Coords))
+        for (Drawable drawable : m_Drawable ) {
+            if (drawable != null && drawable.getCoords().isSame(p_Coords))
                 return true;
         }
-
-
-        //test also water,preys,plant ...
         return false;
     }
+
+    public Coords findClosestFreeSpot(Coords p_coords) {
+        //Write an algorithm to find free coords closest
+        // to the coordinates passed as parameter
+        return null;
+    }
+
+    public int getFreePredatorIndex() {
+        //Write an algorithm to find the first free indew
+        //where the predator passed in parameter can be
+        //stored
+        return 0;
+    }
+
+    public void insertPredator(int p_iIndex, Predator p_Predator) {
+       /* if (p_iIndex < m_PredatorsArray.length &&
+                p_iIndex >= 0)
+            m_PredatorsArray[p_iIndex] = p_Predator;*/
+    }
+
 }
